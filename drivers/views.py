@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from .forms import RegistrationForm, DriverForm
 from AutoparkProject.utils import calculate_age
 from AutoparkProject.settings import LOGIN_REDIRECT_URL
+from employees.models import Car
 
 
 def index(request):
@@ -37,16 +38,31 @@ def register_done(request, new_user):
 
 def log_in(request):
         form = AuthenticationForm(request)
+        if request.method == "POST":
+            if form.is_valid():
+                username = form.cleaned_data['username']
+                password = form.cleaned_data['password']
 
-        if form.is_valid():
-             username = form.cleaned_data['username']
-             password = form.cleaned_data['password']
+                user = authenticate(username, password)
 
-             user = authenticate(username, password)
-
-             if user is not None:
-                  login(request, user)
-                  url = request.GET.get('next', LOGIN_REDIRECT_URL)
-                  return redirect(url)
+                if user is not None:
+                    login(request, user)
+                    url = request.GET.get('next', LOGIN_REDIRECT_URL)
+                    return redirect(url)
         return render (request, 'drivers/login.html', {'form': form, 'title': "Вход"})     
-             
+
+
+def log_out(request):
+    logout(request)
+    url = LOGIN_REDIRECT_URL
+    return redirect(url)      
+
+
+def select_car(request):
+    title = "Выберите машину"
+    cars = Car.objects.filter(status=True)
+    context = {"title": title, "cars": cars}
+
+    return render(request, "drivers/select_car.html", context=context)
+
+
