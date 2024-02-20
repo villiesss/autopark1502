@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'drivers',
     'users',
     'employees',
+    'sorl.thumbnail'
 ]
 
 MIDDLEWARE = [

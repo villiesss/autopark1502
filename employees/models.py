@@ -9,6 +9,9 @@ class CarBrand(models.Model):
         verbose_name = "Бренд"
         verbose_name_plural = "Бренды"
 
+    def __str__(self):
+        return self.name
+
 
 class Car(models.Model):
  
@@ -26,7 +29,7 @@ class Car(models.Model):
         verbose_name_plural="Машины"
 
     def __str__(self):
-        return " ".join([self.brand, self.model, self.year])    
+        return " ".join([self.brand.name, self.model, str(self.year)])    
     
 class Department(models.Model):
     name = models.CharField(max_length=50, verbose_name="Отдел")
