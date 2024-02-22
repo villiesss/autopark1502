@@ -14,18 +14,18 @@
     text-align: center;
 }
 
-.product img {
+.car img {
     max-width: 200px;
     max-height: 200px;
 }
 
-.product h2 {
+.car h2 {
     font-size: 18px;
     margin-top: 10px;
 }
 
-.product p {
+.car p {
     font-size: 14px;
-    margin-top: 5;
+    margin-top: 5px;
 }
 

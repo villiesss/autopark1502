@@ -1,6 +1,8 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
+from django.http import JsonResponse
+
 from .forms import RegistrationForm, DriverForm
 from AutoparkProject.utils import calculate_age
 from AutoparkProject.settings import LOGIN_REDIRECT_URL
@@ -58,11 +60,20 @@ def log_out(request):
     return redirect(url)      
 
 
-def select_car(request):
-    title = "Выберите машину"
-    cars = Car.objects.filter(status=True)
-    context = {"title": title, "cars": cars}
+def select_car(request, pk=None):
+    if request.method == "GET":
+        title = "Выберите машину"
+        cars = Car.objects.filter(status=True)
+        context = {"title": title, "cars": cars}
+    if pk is not None:
+        print (pk)
+        car = Car.objects.get(pk=pk)
+        car.status = False
+        car.save()
+        return redirect("drivers:index")
 
     return render(request, "drivers/select_car.html", context=context)
 
-
+def test_fetch(request):
+    car_id = request.POST.get("carId")
+    return JsonResponse(car)
