@@ -12,18 +12,22 @@
         let car = {
             id: carId
         }
-        let response = await fetch('/test_fetch',{
+        let response = await fetch('drivers/test_fetch/',{
             method:"POST",
             headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({carId: carId})
+                "Content-Type": "application/json", 'X-CSRFToken': '{% csrf_token %}'},
+            body: JSON.stringify(car),
+            credentials: 'same-origin',
 
         }
         )
-        .then(response => response.json())
+        let result = await response.json();
     }
 </script>
+
+<div class="car-count">
+    Количество доступных машин: <span>{{count}}</span>
+</div>
 
 <div class="cars">
     {% for car in cars %}

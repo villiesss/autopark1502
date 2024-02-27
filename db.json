@@ -1,0 +1,65 @@
+[
+{
+  "model": "employees.carbrand",
+  "pk": 1,
+  "fields": {
+    "name": "BMW"
+  }
+},
+{
+  "model": "employees.carbrand",
+  "pk": 2,
+  "fields": {
+    "name": "Mersedes"
+  }
+},
+{
+  "model": "employees.carbrand",
+  "pk": 3,
+  "fields": {
+    "name": "Toyota"
+  }
+},
+{
+  "model": "employees.car",
+  "pk": 1,
+  "fields": {
+    "brand": 1,
+    "model": "3",
+    "color": "white",
+    "power": 200,
+    "year": 2020,
+    "image": "",
+    "category": "comfort",
+    "status": true
+  }
+},
+{
+  "model": "employees.car",
+  "pk": 2,
+  "fields": {
+    "brand": 3,
+    "model": "Land Cruiser",
+    "color": "blue",
+    "power": 500,
+    "year": 2015,
+    "image": "",
+    "category": "business",
+    "status": true
+  }
+},
+{
+  "model": "employees.department",
+  "pk": 1,
+  "fields": {
+    "name": "Отдел кадров"
+  }
+},
+{
+  "model": "employees.department",
+  "pk": 2,
+  "fields": {
+    "name": "Отдел бухгалтерии"
+  }
+}
+]
