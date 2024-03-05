@@ -99,3 +99,9 @@ def profile(request, pk):
     
     context = {'driver': driver, 'car': car}
     return redirect(request, 'drivers/profile.html', context=context)
+
+    # if request.method == "POST":
+    #     car_id = request.POST.get('car_id')
+    #     new_car = Car.objects.get(pk=car_id)
+
+    #     driver = Driver.objects.get(user=request.user)
